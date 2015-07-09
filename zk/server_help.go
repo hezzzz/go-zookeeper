@@ -26,6 +26,7 @@ func StartTestCluster(size int) (*TestCluster, error) {
 		return nil, err
 	}
 	success := false
+	rand.Seed(time.Now().UnixNano())
 	startPort := int(rand.Int31n(6000) + 10000)
 	cluster := &TestCluster{Path: tmpPath}
 	defer func() {

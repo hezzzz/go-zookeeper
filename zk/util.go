@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 // AuthACL produces an ACL list containing a single ACL which uses the
@@ -33,6 +34,7 @@ func DigestACL(perms int32, user, password string) []ACL {
 
 // stringShuffle performs a Fisher-Yates shuffle on a slice of strings
 func stringShuffle(s []string) {
+	rand.Seed(time.Now().UnixNano())
 	for i := len(s) - 1; i > 0; i-- {
 		j := rand.Intn(i + 1)
 		s[i], s[j] = s[j], s[i]
